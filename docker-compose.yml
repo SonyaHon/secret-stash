@@ -1,0 +1,56 @@
+version: "3.8"
+services:
+
+  backend:
+    container_name: 'secretstash_backend'
+    env_file:
+      - ./.env
+    build:
+      context: './packages/backend'
+      dockerfile: 'Dockerfile'
+    ports:
+      - "${APP__PORT}:${APP__PORT}"
+      - "9229:9229"
+    volumes:
+      - ./packages/backend/src:/app/backend/src
+      - ./packages/backend/nest-cli.json:/app/backend/nest-cli.json
+      - ./packages/backend/tsconfig.json:/app/backend/tsconfig.json
+      - ./packages/backend/tsconfig.build.json:/app/backend/tsconfig.build.json
+      - ./uploaded-data:/app/backend/uploaded-data
+    restart: always
+    command: ['yarn', 'start:debug']
+    networks:
+      secretstash_net:
+        aliases:
+          - backend
+
+  mongodb:
+    container_name: 'secretstash_mongo'
+    image: mongo:5.0.5
+    env_file:
+      - ./.env
+    ports:
+      - "${MONGO__PORT}:${MONGO__PORT}"
+    restart: always
+    volumes:
+      - ./mongo-data:/data/db
+    networks:
+      secretstash_net:
+        aliases:
+          - mongo
+
+  redis:
+    container_name: 'secretstash_redis'
+    image: redis:6.2.6-alpine
+    env_file:
+      - ./.env
+    ports:
+      - "${REDIS__PORT}:${REDIS__PORT}"
+    restart: always
+    networks:
+      secretstash_net:
+        aliases:
+          - redis
+  
+networks:
+  secretstash_net:

@@ -1,0 +1,7 @@
+src/
+build/
+node_modules/
+dist/
+Dockerfile
+uploaded-data/
+test/
