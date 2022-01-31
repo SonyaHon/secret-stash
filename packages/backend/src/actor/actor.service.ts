@@ -8,7 +8,7 @@ import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
 import { CropImageJob } from '../task-queue/image-cropper.consumer';
 import { QueueName } from '../task-queue/queue-names';
-import { Paginated } from '../utils/paginated';
+import { filterFieldsFactory, Paginated } from '../utils/paginated';
 import { RemoveFilesJob } from '../task-queue/file-remover.consumer';
 import { DeleteActorFromVideosJob } from '../task-queue/videos-cleaner.consumer';
 import { Logger } from '../logger/logger';
@@ -192,26 +192,7 @@ export class ActorService {
   }
 
   async listActors(filter: ActorListFilter): Promise<Paginated<ActorDocument>> {
-    const filterFields = (
-      fields: string[],
-      transform: (
-        accum: Record<any, any>,
-        field: string,
-        value: any,
-      ) => Record<any, any>,
-    ) => {
-      return fields
-        .filter((fieldName) => {
-          return Object.keys(filter.filter).includes(fieldName);
-        })
-        .map((fieldName) => {
-          const value = filter.filter[fieldName];
-          return [fieldName, value];
-        })
-        .reduce((result, [fieldName, value]) => {
-          return transform(result, fieldName, value);
-        }, {} as Record<any, any>);
-    };
+    const filterFields = filterFieldsFactory(filter);
 
     const regexpFilters = filterFields(['name'], (r, f, v) => ({
       ...r,
