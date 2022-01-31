@@ -17,6 +17,7 @@ import { ActorModule } from '../actor/actor.module';
 import { TaskQueueModule } from '../task-queue/task-queue.module';
 import { VideoModule } from '../video/video.module';
 import { VideoConfig } from '../config/video.config';
+import { FileModule } from '../file/file.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { VideoConfig } from '../config/video.config';
     AuthModule,
     ActorModule,
     VideoModule,
+    FileModule,
   ],
 })
 export class BootstrapModule {

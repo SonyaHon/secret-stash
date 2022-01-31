@@ -4,11 +4,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { FileSchemaName, FileSchema } from '../entities/file.entity';
 import { access, mkdir } from 'fs';
 import { FsConfig } from '../config/fs.config';
+import { FileController } from './file.controller';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: FileSchemaName, schema: FileSchema }]),
   ],
+  controllers: [FileController],
   providers: [FileService],
   exports: [FileService],
 })

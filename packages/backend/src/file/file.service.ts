@@ -49,4 +49,12 @@ export class FileService {
       await file.remove();
     }
   }
+
+  async getFile(id: string) {
+    const file = await this.fileModel.findById(id);
+    if (!file) {
+      throw new Error(`File ${id} is not found`);
+    }
+    return file;
+  }
 }
