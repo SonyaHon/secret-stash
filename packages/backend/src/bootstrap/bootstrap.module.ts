@@ -15,10 +15,12 @@ import { AuthModule } from 'src/auth/auth.module';
 import { createClient } from 'redis';
 import { ActorModule } from '../actor/actor.module';
 import { TaskQueueModule } from '../task-queue/task-queue.module';
+import { VideoModule } from '../video/video.module';
+import { VideoConfig } from '../config/video.config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot([AppConfig, MongoConfig, RedisConfig], {
+    ConfigModule.forRoot([AppConfig, MongoConfig, RedisConfig, VideoConfig], {
       defineGlobal: true,
     }),
     MongooseModule.forRootAsync({
@@ -36,6 +38,7 @@ import { TaskQueueModule } from '../task-queue/task-queue.module';
     TaskQueueModule,
     AuthModule,
     ActorModule,
+    VideoModule,
   ],
 })
 export class BootstrapModule {

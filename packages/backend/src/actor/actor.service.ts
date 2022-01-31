@@ -284,7 +284,9 @@ export class ActorService {
       document.altPoster,
     ].filter((el) => !!el);
 
+    // @TODO: Check that corresponding files are being deleted!
     await this.fileRemoverQueue.add({ files: filesToDelete });
+    // @TODO: Check that actor is deleted from corresponding videos!
     await this.videoActorsCleanerQueue.add({ actorId });
 
     await document.remove();

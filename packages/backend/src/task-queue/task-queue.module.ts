@@ -6,15 +6,26 @@ import { VideosCleanerConsumer } from './videos-cleaner.consumer';
 
 import { ActorModule } from '../actor/actor.module';
 import { FileModule } from '../file/file.module';
+import { VideoPosterGeneratorConsumer } from './video-poster-generator.consumer';
+import { VideoPreviewGeneratorConsumer } from './video-preview-generator.consumer';
+import { VideoModule } from '../video/video.module';
 
 @Global()
 @Module({
-  imports: [
-    ActorModule,
-    FileModule,
-    // MongooseModule.forFeature([{ name: ActorSchemaName, schema: ActorSchema }]),
+  imports: [ActorModule, FileModule, VideoModule],
+  providers: [
+    ImageCropperConsumer,
+    FileRemoverConsumer,
+    VideosCleanerConsumer,
+    VideoPosterGeneratorConsumer,
+    VideoPreviewGeneratorConsumer,
   ],
-  providers: [ImageCropperConsumer, FileRemoverConsumer, VideosCleanerConsumer],
-  exports: [ImageCropperConsumer, FileRemoverConsumer, VideosCleanerConsumer],
+  exports: [
+    ImageCropperConsumer,
+    FileRemoverConsumer,
+    VideosCleanerConsumer,
+    VideoPosterGeneratorConsumer,
+    VideoPreviewGeneratorConsumer,
+  ],
 })
 export class TaskQueueModule {}

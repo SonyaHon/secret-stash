@@ -16,4 +16,15 @@ export class FsConfig {
       callback(null, `${id}${fileExtension}`);
     },
   });
+
+  public static videoStorage = diskStorage({
+    destination: (req, file, callback) => {
+      callback(null, FsConfig.uploadedVideosPath);
+    },
+    filename: (req, file, callback) => {
+      const id = nanoid();
+      const fileExtension = extname(file.originalname);
+      callback(null, `${id}${fileExtension}`);
+    },
+  });
 }
