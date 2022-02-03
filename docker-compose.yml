@@ -18,7 +18,7 @@ services:
       - ./packages/backend/tsconfig.build.json:/app/backend/tsconfig.build.json
       - ./uploaded-data:/app/backend/uploaded-data
     restart: always
-    command: ['yarn', 'start:debug']
+    command: [ 'yarn', 'start:debug' ]
     networks:
       secretstash_net:
         aliases:
@@ -39,6 +39,25 @@ services:
         aliases:
           - mongo
 
+  frontend:
+    container_name: 'secretstash_frontend'
+    env_file:
+      - ./.env
+    build:
+      context: './packages/frontend'
+      dockerfile: 'Dockerfile'
+      target: 'build'
+    ports:
+      - '${REACT_APP_PORT}:${REACT_APP_PORT}'
+    restart: always
+    volumes:
+      - ./packages/frontend/src:/app/frontend/src
+    command: [ 'yarn', 'start' ]
+    networks:
+      secretstash_net:
+        aliases:
+          - frontend
+
   redis:
     container_name: 'secretstash_redis'
     image: redis:6.2.6-alpine
@@ -51,6 +70,6 @@ services:
       secretstash_net:
         aliases:
           - redis
-  
+
 networks:
   secretstash_net:

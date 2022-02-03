@@ -4,4 +4,6 @@ uploaded-data/
 mongo-data/
 .env
 .log/
-
+node_modules/
+.idea
+packages/frontend/.idea

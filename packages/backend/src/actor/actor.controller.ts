@@ -9,7 +9,7 @@ import {
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
-import { ActorListFilter, ActorService, SortOrder } from './actor.service';
+import { ActorService, SortOrder } from './actor.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FsConfig } from '../config/fs.config';
 import { FileService } from '../file/file.service';
@@ -17,7 +17,6 @@ import { AddActorInfoDto } from './add-actor-info.dto';
 import { CropDataDto } from './crop-data.dto';
 import { CreateActorsDto } from './create-actors.dto';
 import { ActorsListQueryDto } from './actors-list-query.dto';
-import { type } from 'os';
 
 @Controller('/actors')
 export class ActorController {
