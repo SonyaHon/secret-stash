@@ -6,6 +6,7 @@ import { styled } from "@mui/styles";
 import { AppTheme } from "../../app/theme";
 import { ChevronLeft } from "@mui/icons-material";
 import { SearchContent } from "../search-content";
+import { useCurrentLocation } from "../../hooks/use-current-location";
 
 const DrawerHeader = styled("div")<AppTheme>(({ theme }) => ({
   display: "flex",
@@ -16,6 +17,7 @@ const DrawerHeader = styled("div")<AppTheme>(({ theme }) => ({
 }));
 
 export const LeftDrawer: React.FC = observer(() => {
+  const currentLocation = useCurrentLocation();
   return (
     <Drawer
       sx={{
@@ -28,7 +30,10 @@ export const LeftDrawer: React.FC = observer(() => {
       }}
       variant="persistent"
       anchor="left"
-      open={Store.ui.drawerOpened}
+      open={
+        Store.ui.drawerOpened &&
+        ["videos", "actors", "collections"].includes(currentLocation)
+      }
     >
       <DrawerHeader>
         <IconButton size="large" onClick={() => Store.ui.toggleDrawer()}>

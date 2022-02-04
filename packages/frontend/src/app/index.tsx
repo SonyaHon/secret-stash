@@ -9,6 +9,8 @@ import { MobileDrawer } from "../features/mobile-drawer";
 import { Store } from "../store";
 import { observer } from "mobx-react";
 import { BrowserRouter } from "react-router-dom";
+import { useCurrentLocation } from "../hooks/use-current-location";
+import { AppContainer } from "./container";
 
 const StyledBox = styled(Box)<AppTheme>(() => ({
   width: "100%",
@@ -19,14 +21,6 @@ const StyledBox = styled(Box)<AppTheme>(() => ({
   flexDirection: "column",
 }));
 
-const Container = styled(Box)<AppTheme>(() => ({
-  height: "100vh",
-  paddingLeft: "1rem",
-  paddingRight: "1rem",
-  transition: "padding-left 225ms cubic-bezier(0, 0, 0.2, 1) 0ms",
-  overflowX: "hidden",
-  overflowY: "auto",
-}));
 const StyledSeparator = styled(Box)<AppTheme>(({ theme }) => ({
   marginBottom: "1rem",
   ...theme.mixins.toolbar,
@@ -42,17 +36,10 @@ export const App: React.FC = observer(() => {
         <StyledBox>
           <TopBar />
           {!isMobile ? <LeftDrawer /> : <MobileDrawer />}
-          <Container
-            style={{
-              paddingLeft:
-                isMobile || !Store.ui.drawerOpened
-                  ? "1rem"
-                  : `calc(${Store.ui.drawerWidth}px + 1rem)`,
-            }}
-          >
+          <AppContainer>
             <StyledSeparator />
             <AppRouter />
-          </Container>
+          </AppContainer>
         </StyledBox>
       </BrowserRouter>
     </ThemeProvider>
