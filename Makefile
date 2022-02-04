@@ -8,7 +8,7 @@ rebuild-all:
 	${DOCKER_COMMAND} up --build -d
 
 stop-all:
-	${DOCKER_COMMAND} stop --remove-orphans
+	${DOCKER_COMMAND} down --remove-orphans
 
 logs:
 	${DOCKER_COMMAND} logs -f ${CONTAINER}
