@@ -1,0 +1,27 @@
+.app-navbar {
+  display: flex;
+  justify-content: space-between;
+
+  & .search {
+    width: 400px;
+  }
+
+
+  & button {
+    margin-left: 8px;
+  }
+
+  & button.mobile-search {
+    display: none;
+  }
+
+  @media screen and (max-width: 600px) {
+    & .search {
+      display: none;
+    }
+
+    & button.mobile-search {
+      display: flex;
+    }
+  }
+}

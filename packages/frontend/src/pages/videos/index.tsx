@@ -1,7 +1,5 @@
-import React from "react";
 import { observer } from "mobx-react";
-import { Box } from "@mui/material";
 
-export const Videos: React.FC = observer(() => {
-  return <Box> Videos </Box>;
+export const VideosPage = observer(() => {
+  return <div className="videos-page">Videos page</div>;
 });

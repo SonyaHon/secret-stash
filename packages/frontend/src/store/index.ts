@@ -1,5 +1,5 @@
-import { UiStore } from "./ui-store";
+import { StringValues } from "./string-values";
 
 export const Store = {
-  ui: new UiStore(),
+  stringValues: new StringValues(),
 };
