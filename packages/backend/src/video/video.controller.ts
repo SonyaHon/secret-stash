@@ -99,8 +99,8 @@ export class VideoController {
         perPage: parseInt(queryFilter.perPage),
       },
       sorting: {
-        ...ifNot(queryFilter.sortField, 'field', nop, 'title'),
-        ...ifNot(queryFilter.sortField, 'order', parseInt, SortOrder.DESC),
+        ...ifNot(queryFilter.sortField, 'field', nop, 'timesWatched'),
+        ...ifNot(queryFilter.sortField, 'order', parseInt, SortOrder.ASC),
       },
       filter: {
         ...ifNot(queryFilter.title, 'title', nop),
