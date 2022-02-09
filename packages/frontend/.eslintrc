@@ -27,6 +27,7 @@
   },
   "rules": {
     "linebreak-style": "off",
+    "indent": ["error", 2],
     "prettier/prettier": [
       "error",
       {

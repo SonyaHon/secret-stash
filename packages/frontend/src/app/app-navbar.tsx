@@ -11,6 +11,9 @@ import { Link } from "react-router-dom";
 import { AppRoutes } from "../store/model";
 import { useCurrentRoute } from "../hooks/use-current-route";
 
+/**
+	The main navigation panel for SecretStash
+**/
 export const AppNavbar: React.FC = observer(() => {
   const route = useCurrentRoute();
   const getIntent = (r: string) => {

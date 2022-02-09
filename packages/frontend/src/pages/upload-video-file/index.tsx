@@ -9,7 +9,7 @@ export const UploadVideoFilePage: React.FC = observer(() => {
   const [file, setFile] = useState<File | null>(null);
   const [title, setTitle] = useState("");
   const [availableTags, setAvailableTags] = useState(
-    Store.stringValues.availableTags
+    Store.stringValues.availableTags,
   );
   const [tags, setTags] = useState<string[]>([]);
 

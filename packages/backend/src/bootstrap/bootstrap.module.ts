@@ -1,23 +1,23 @@
+import { BullModule } from '@nestjs/bull';
 import { Module } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, getConfigToken } from '@sonyahon/config';
+import * as RedisStoreFactory from 'connect-redis';
+import * as Session from 'express-session';
+import { createClient } from 'redis';
+import { AuthModule } from 'src/auth/auth.module';
+import { Logger } from 'src/logger/logger';
+import { ActorModule } from '../actor/actor.module';
 import { AppConfig } from '../config/app.config';
 import { MongoConfig } from '../config/mongo.config';
 import { RedisConfig } from '../config/redis.config';
-import { Logger } from 'src/logger/logger';
-import { LoggerNestJS } from '../logger/nestjs-adapter';
-import { MongooseModule } from '@nestjs/mongoose';
-import { MongooseRootAdapter } from './mongoose-root-adapter.provider';
-import * as Session from 'express-session';
-import * as RedisStoreFactory from 'connect-redis';
-import { BullModule } from '@nestjs/bull';
-import { AuthModule } from 'src/auth/auth.module';
-import { createClient } from 'redis';
-import { ActorModule } from '../actor/actor.module';
-import { TaskQueueModule } from '../task-queue/task-queue.module';
-import { VideoModule } from '../video/video.module';
 import { VideoConfig } from '../config/video.config';
 import { FileModule } from '../file/file.module';
+import { LoggerNestJS } from '../logger/nestjs-adapter';
+import { TaskQueueModule } from '../task-queue/task-queue.module';
+import { VideoModule } from '../video/video.module';
+import { MongooseRootAdapter } from './mongoose-root-adapter.provider';
 
 @Module({
   imports: [

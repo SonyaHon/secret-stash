@@ -7,12 +7,12 @@ import { Router } from "./router";
 import { AppNavbar } from "./app-navbar";
 
 export const App: React.FC = observer(() => {
-  return (
-    <BrowserRouter>
-      <div className="app">
-        <AppNavbar />
-        <Router />
-      </div>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<div className="app">
+				<AppNavbar />
+				<Router />
+			</div>
+		</BrowserRouter>
+	);
 });

@@ -21,6 +21,4 @@ export class AppConfig {
     return hashSync(data, 13);
   })
   public password = 'admin';
-
-
 }
